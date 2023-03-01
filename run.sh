@@ -79,7 +79,12 @@ else
 	echo -e "\n Compilation Failed!"
 fi
 
-# Upload to Gdrive
+# Upload to WeTransfer
 echo -e "$green << Uploading to WeTransfer>> \n $white"
 curl -sL https://git.io/file-transfer | sh && ./transfer wet ${zipname}
 echo -e "$green << Uploading Done>> \n $white"
+
+# Remove
+rm -rf transfer
+rm ${zipname}
+rm -rf out
