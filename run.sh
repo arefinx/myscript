@@ -5,7 +5,7 @@ echo -e "$green << cloning kernel >> \n $white"
 git clone --depth=1 https://github.com/Sm6150-Sweet/kernel_xiaomi_sm6150 meraki
 cd meraki
 
-KERNEL_DEFCONFIG=sweet_defconfig
+KERNEL_DEFCONFIG=vendor/sweet_user_defconfig
 date=$(date +"%Y-%m-%d-%H%M")
 export ARCH=arm64
 export SUBARCH=arm64
