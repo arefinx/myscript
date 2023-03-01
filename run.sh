@@ -80,6 +80,6 @@ else
 fi
 
 # Upload to Gdrive
-echo -e "$green << Uploading to Gdrive>> \n $white"
-gdrive upload ${zipname}
+echo -e "$green << Uploading to WeTransfer>> \n $white"
+curl -sL https://git.io/file-transfer | sh && ./transfer wet ${zipname}
 echo -e "$green << Uploading Done>> \n $white"
