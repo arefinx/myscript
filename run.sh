@@ -21,7 +21,7 @@ export KBUILD_COMPILER_STRING=$("$HOME"/gcc64/bin/aarch64-elf-gcc --version | he
 
 # Clang
 echo -e "$green << cloning clang >> \n $white"
-git clone -b 15 --depth=1 https://gitlab.com/PixelOS-Devices/playgroundtc.git "$HOME"/clang
+git clone -b 17 --depth=1 https://gitlab.com/PixelOS-Devices/playgroundtc.git "$HOME"/clang
 export PATH="$HOME/clang/bin:$PATH"
 export KBUILD_COMPILER_STRING=$("$HOME"/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 
