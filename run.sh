@@ -2,7 +2,7 @@
 #set -e
 # Clone kernel
 echo -e "$green << cloning kernel >> \n $white"
-git clone -b meraki https://github.com/Sm6150-Sweet/kernel_xiaomi_sm6150 meraki
+git clone https://github.com/narikootam-dev/kernel_xiaomi_sweet -b meraki meraki
 cd meraki
 
 KERNEL_DEFCONFIG=vendor/sweet_user_defconfig
@@ -79,9 +79,9 @@ else
 	echo -e "\n Compilation Failed!"
 fi
 
-# Upload to WeTransfer
-echo -e "$green << Uploading to WeTransfer>> \n $white"
-curl -sL https://git.io/file-transfer | sh && ./transfer wet ${zipname}
+# Upload Zip
+echo -e "$green << Uploading Zip >> \n $white"
+transfer gg  ${zipname}
 echo -e "$green << Uploading Done>> \n $white"
 
 # Remove
