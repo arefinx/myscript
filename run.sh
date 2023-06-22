@@ -1,27 +1,17 @@
 #!/bin/bash
 #set -e
-# Clone kernel
-echo -e "$green << cloning kernel >> \n $white"
-git clone https://github.com/narikootam-dev/kernel_xiaomi_sweet -b meraki meraki
+echo -e "$green << initializing compilation script >> \n $white"
 cd meraki
+
 
 KERNEL_DEFCONFIG=vendor/sweet_user_defconfig
 date=$(date +"%Y-%m-%d-%H%M")
 export ARCH=arm64
 export SUBARCH=arm64
 export zipname="MerakiKernel-sweet-${date}.zip"
-
-# Tool Chain
-echo -e "$green << cloning gcc from arter >> \n $white"
-git clone --depth=1 https://github.com/mvaisakh/gcc-arm64 "$HOME"/gcc64
-git clone --depth=1 https://github.com/mvaisakh/gcc-arm "$HOME"/gcc32
 export PATH="$HOME/gcc64/bin:$HOME/gcc32/bin:$PATH"
 export STRIP="$HOME/gcc64/aarch64-elf/bin/strip"
 export KBUILD_COMPILER_STRING=$("$HOME"/gcc64/bin/aarch64-elf-gcc --version | head -n 1)
-
-# Clang
-echo -e "$green << cloning clang >> \n $white"
-git clone -b 17 --depth=1 https://gitlab.com/PixelOS-Devices/playgroundtc.git "$HOME"/clang
 export PATH="$HOME/clang/bin:$PATH"
 export KBUILD_COMPILER_STRING=$("$HOME"/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 
@@ -53,7 +43,6 @@ make -j$(nproc --all) O=out \
                               CC=clang \
                               CROSS_COMPILE=aarch64-linux-gnu- \
                               CROSS_COMPILE_ARM32=arm-linux-gnueabi-  2>&1 | tee error.log
-                                                  
 export IMG="$MY_DIR"/out/arch/arm64/boot/Image.gz
 export dtbo="$MY_DIR"/out/arch/arm64/boot/dtbo.img
 export dtb="$MY_DIR"/out/arch/arm64/boot/dtb.img
@@ -61,6 +50,7 @@ export dtb="$MY_DIR"/out/arch/arm64/boot/dtb.img
 find out/arch/arm64/boot/dts/ -name '*.dtb' -exec cat {} + >out/arch/arm64/boot/dtb
 if [ -f "out/arch/arm64/boot/Image.gz" ] && [ -f "out/arch/arm64/boot/dtbo.img" ] && [ -f "out/arch/arm64/boot/dtb" ]; then
 	echo "------ Finishing  Build ------"
+        echo "------ Cloning AnyKernel -----"
 	git clone -q https://github.com/Sm6150-Sweet/AnyKernel3
 	cp out/arch/arm64/boot/Image.gz AnyKernel3
 	cp out/arch/arm64/boot/dtb AnyKernel3
