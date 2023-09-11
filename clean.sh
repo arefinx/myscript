@@ -1,6 +1,6 @@
 #!/bin/bash
 # Clean after building
-cd moonlight
+cd sunny
 echo -e "$green << cleaning >> \n $white"
 rm  error.log
 rm -rf out

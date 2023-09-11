@@ -6,6 +6,9 @@
 # Copyright (C) 2021 rokuSENPAI
 # Copyright (C) 2021 Yoriscape
 
+# Setup
+bash setup.sh
+
 # Config
 DIR="${PWD}"
 KERNELNAME="Moonlight"
