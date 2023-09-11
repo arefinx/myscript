@@ -20,6 +20,9 @@
 
 #Kernel building script
 
+# Setup
+bash ../setup.sh
+
 # Bail out if script fails
 set -e
 

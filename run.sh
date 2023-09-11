@@ -1,8 +1,8 @@
 #!/bin/bash
 #set -e
+bash setup.sh
 echo -e "$green << initializing compilation script >> \n $white"
-cd moonlight
-
+cd sunny
 
 KERNEL_DEFCONFIG=sunny_defconfig
 date=$(date +"%Y-%m-%d-%H%M")

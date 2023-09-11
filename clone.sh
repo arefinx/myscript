@@ -2,7 +2,7 @@
 #set -e
 # Kernel
 echo -e "$green << cloning kernel >> \n $white"
-git clone https://github.com/arefinx/kernel_xiaomi_sunny moonlight
+git clone https://github.com/arefinx/kernel_xiaomi_sunny sunny
 echo -e "$green << cloned kernel successfully >> \n $white"
 
 # Tool Chain
