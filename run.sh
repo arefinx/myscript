@@ -1,14 +1,14 @@
 #!/bin/bash
 #set -e
 echo -e "$green << initializing compilation script >> \n $white"
-cd meraki
+cd moonlight
 
 
-KERNEL_DEFCONFIG=vendor/sweet_user_defconfig
+KERNEL_DEFCONFIG=sunny_defconfig
 date=$(date +"%Y-%m-%d-%H%M")
 export ARCH=arm64
 export SUBARCH=arm64
-export zipname="MerakiKernel-sweet-${date}.zip"
+export zipname="MoonlightKernel-sunny-${date}.zip"
 export PATH="$HOME/gcc64/bin:$HOME/gcc32/bin:$PATH"
 export STRIP="$HOME/gcc64/aarch64-elf/bin/strip"
 export KBUILD_COMPILER_STRING=$("$HOME"/gcc64/bin/aarch64-elf-gcc --version | head -n 1)
@@ -51,7 +51,7 @@ find out/arch/arm64/boot/dts/ -name '*.dtb' -exec cat {} + >out/arch/arm64/boot/
 if [ -f "out/arch/arm64/boot/Image.gz" ] && [ -f "out/arch/arm64/boot/dtbo.img" ] && [ -f "out/arch/arm64/boot/dtb" ]; then
 	echo "------ Finishing  Build ------"
         echo "------ Cloning AnyKernel -----"
-	git clone -q https://github.com/Sm6150-Sweet/AnyKernel3
+	git clone -q https://github.com/arefinx/AnyKernel3
 	cp out/arch/arm64/boot/Image.gz AnyKernel3
 	cp out/arch/arm64/boot/dtb AnyKernel3
 	cp out/arch/arm64/boot/dtbo.img AnyKernel3
@@ -72,6 +72,7 @@ fi
 # Upload Zip
 echo -e "$green << Uploading Zip >> \n $white"
 transfer gg  ${zipname}
+bash moonshit.sh
 echo -e "$green << Uploading Done>> \n $white"
 
 # Remove
