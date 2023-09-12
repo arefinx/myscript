@@ -9,11 +9,11 @@ date=$(date +"%Y-%m-%d-%H%M")
 export ARCH=arm64
 export SUBARCH=arm64
 export zipname="MoonlightKernel-sunny-${date}.zip"
-export PATH="$HOME/gcc64/bin:$HOME/gcc32/bin:$PATH"
-export STRIP="$HOME/gcc64/aarch64-elf/bin/strip"
-export KBUILD_COMPILER_STRING=$("$HOME"/gcc64/bin/aarch64-elf-gcc --version | head -n 1)
-export PATH="$HOME/clang/bin:$PATH"
-export KBUILD_COMPILER_STRING=$("$HOME"/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
+export PATH="$PWD/gcc64/bin:$HOME/gcc32/bin:$PATH"
+export STRIP="$PWD/gcc64/aarch64-elf/bin/strip"
+export KBUILD_COMPILER_STRING=$("$PWD"/gcc64/bin/aarch64-elf-gcc --version | head -n 1)
+export PATH="$PWD/clang/bin:$PATH"
+export KBUILD_COMPILER_STRING=$("$PWD"/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 
 
 # Speed up build process
